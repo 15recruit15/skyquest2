@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name:              docker-compose build
+          name:              build continer
           command:           docker-compose build
   # testするjob
   test:
@@ -18,20 +18,20 @@ jobs:
     steps:
       - checkout
       - run:
-          name:              docker-compose up -d
+          name:              start container
           command:           docker-compose up -d
       - run:                 sleep 30
       - run:
-          name:              docker-compose run back rails db:create RAILS_ENV=test
+          name:              test database creates
           command:           docker-compose run back rails db:create RAILS_ENV=test
       - run:
-          name:              docker-compose run back rails db:migrate RAILS_ENV=test
+          name:              test database migrate
           command:           docker-compose run back rails db:migrate RAILS_ENV=test
       - run:
-          name:              docker-compose run back bundle exec rspec spec
+          name:              rspec test
           command:           docker-compose run back bundle exec rspec spec
       - run:
-          name:              docker-compose down
+          name:              stop container
           command:           docker-compose down
 
 # 順番を制御するworkflow

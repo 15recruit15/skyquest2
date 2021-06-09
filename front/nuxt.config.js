@@ -39,15 +39,14 @@ export default {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
-    '@nuxtjs/proxy'
+    '@nuxtjs/auth'
   ],
 
   build: {
   },
 
   server: {
-      port: 8080,
+      port: 3000,
       host: '0.0.0.0',
   },
 

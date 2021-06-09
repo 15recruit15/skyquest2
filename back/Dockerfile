@@ -27,6 +27,7 @@ RUN apk update && \
     /usr/bin/mysql*
 
 ADD . ${HOME}
+
 # ポート3000番をあける
 #EXPOSE 3000
 # コマンドを実行
