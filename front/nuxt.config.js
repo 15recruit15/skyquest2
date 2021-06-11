@@ -51,7 +51,8 @@ export default {
   },
 
   axios: {
-    baseURL: 'http://localhost:3000',
+    //baseURL: 'http://localhost:3000',
+    baseURL: 'https://skyquest-japan-pilot.xyz',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
