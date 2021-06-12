@@ -4,9 +4,9 @@ ENV HOME="/app" \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo
 
-#ENV HOST 0.0.0.0
-#COPY package.json yarn.lock ./
+ENV HOST 0.0.0.0
 WORKDIR ${HOME}
+COPY . .
 
 RUN apk update && \
     apk upgrade && \
@@ -14,6 +14,6 @@ RUN apk update && \
     yarn install &&\
     rm -rf /var/cache/apk/*
 
-#RUN yarn run build
-#EXPOSE 3000
-#CMD ["yarn", "dev"]
+RUN yarn run build
+EXPOSE 3000
+CMD ["yarn", "start"]

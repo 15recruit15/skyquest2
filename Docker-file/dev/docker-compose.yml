@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb:10.4
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: root
+    ports:
+      - '3306:3306'
+    restart: always #実行時に再起動する
+    #command: --default-authentication-plugin=mysql_native_password #デフォルトの認証プライグインを変更する。
+    volumes:
+      - db-data:/var/lib/mysql 
+
+  back:
+    build: ./back #./backのDockerfileを参照してイメージを構築する。
+    # 前半はrailsサーバー消し忘れた用。
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'" 
+    volumes:
+      - ./back:/app:cached #ホスト側の./sky-backディレクトリと、コンテナ側のappディレクトリが共有される。
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db #mysqlがrailsに先行して起動する
+    ports:
+      - 3000:3000  #ホストコンピュータのポート：Docker内のポート
+
+  front:
+    build: ./front
+    command: yarn run dev
+    volumes:
+      - ./front:/app:cached
+    ports:
+      - 8080:3000
+      #ホストコンピュータのポート：Docker内のポート
+    depends_on:
+      - back
+
+volumes:
+  public-data:
+  tmp-data:
+  log-data:
+  db-data:
+
+#docker-compose run back 
