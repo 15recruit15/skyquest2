@@ -49,8 +49,12 @@ export default {
       host: '0.0.0.0',
   },
 
+  env: {
+    apiURL: process.env.API_URL || 'http://localhost:3000'
+  },
+
   axios: {
-    baseURL: "https://skyquest-japan-pilot-api.xyz",
+    baseURL: process.env.apiURL,
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',

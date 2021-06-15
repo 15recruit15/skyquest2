@@ -1,8 +1,10 @@
 version:                     2.1
 
-# 実行するjob
+orbs:
+  aws-ecr:                   circleci/aws-ecr@7.0.0
+  aws-ecs:                   circleci/aws-ecs@2.2.1
+
 jobs:
-  # buildするjob
   build:
     machine:
       image:                 circleci/classic:edge
@@ -11,7 +13,6 @@ jobs:
       - run:
           name:              build continer
           command:           docker-compose build
-  # testするjob
   test:
     machine:
       image:                 circleci/classic:edge
@@ -34,7 +35,6 @@ jobs:
           name:              stop container
           command:           docker-compose down
 
-# 順番を制御するworkflow
 workflows:
   build_and_test_and_deploy:
     jobs:
@@ -42,3 +42,32 @@ workflows:
       - test:
           requires:
             - build
+      - aws-ecr/build-and-push-image:
+            name:                         'build-and-push-back'
+            account-url:                  AWS_ECR_ACCOUNT_URL
+            region:                       AWS_REGION
+            repo:                         ${REPO_NAME_BACK}
+            tag:                          "${CIRCLE_SHA1}" 
+            path:                         './back'
+            dockerfile:                   Dockerfile
+            extra-build-args:             '--build-arg RAILS_MASTER_KEY=$RAILS_MASTER_KEY'
+            requires:
+              - test
+            filters:
+              branches:
+                only:
+                  - master
+      - aws-ecr/build-and-push-image:
+            name:                         'build-and-push-front'
+            account-url:                  AWS_ECR_ACCOUNT_URL
+            region:                       AWS_REGION
+            repo:                         ${REPO_NAME_FRONT}
+            tag:                          "${CIRCLE_SHA1}"
+            path:                         './front'
+            dockerfile:                   Dockerfile
+            requires:
+              - test
+            filters:
+              branches:
+                only:
+                  - master

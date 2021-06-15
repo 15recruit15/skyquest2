@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ['https://skyquest-japan-pilot.xyz', 'http://localhost:3000']
+    origins ['https://skyquest-japan-pilot.xyz', 'http://localhost:8080']
 
     resource '*',
       headers: :any,
