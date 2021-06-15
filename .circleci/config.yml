@@ -12,16 +12,14 @@ jobs:
       - checkout
       - run:
           name:              build continer
-          command:           docker-compose build
+          command:           docker-compose build --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
   test:
     machine:
       image:                 circleci/classic:edge
     steps:
       - checkout
       - run:
-          name:             container up
-          environment: 
-              RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+          name:             testing
           command: |      
                             docker-compose up -d
                             docker-compose run back rails db:create RAILS_ENV=test
