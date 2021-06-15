@@ -22,7 +22,7 @@ jobs:
           name:             container up
           environment: 
               RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
-          command:          
+          command: |      
                             docker-compose up -d
                             docker-compose run back rails db:create RAILS_ENV=test
                             docker-compose run back rails db:migrate RAILS_ENV=test
