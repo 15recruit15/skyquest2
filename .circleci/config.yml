@@ -19,11 +19,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name:              start container
+          name:              container up
           command:           docker-compose up -d
       - run:                 sleep 30
       - run:
-          name:              test database creates
+          name:              creates test db
           command:           docker-compose run back rails db:create RAILS_ENV=test
       - run:
           name:              test database migrate
