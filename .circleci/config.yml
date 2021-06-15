@@ -24,6 +24,8 @@ jobs:
       - run:                 sleep 30
       - run:
           name:              creates test db
+          environment: 
+              RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
           command:           docker-compose run back rails db:create RAILS_ENV=test
       - run:
           name:              test database migrate
