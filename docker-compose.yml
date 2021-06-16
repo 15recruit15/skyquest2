@@ -17,14 +17,14 @@ services:
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0' " 
     volumes:
       - ./back:/app:cached 
-    #environment: 
-    #  RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    environment: 
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     stdin_open: true
     tty: true
     depends_on:
       - db 
     ports:
-      - 3000:3000  #ホストコンピュータのポート：Docker内のポート
+      - 3000:3000 
 
   front:
     build: ./front
@@ -33,7 +33,6 @@ services:
       - ./front:/app:cached
     ports:
       - 8080:3000
-      #ホストコンピュータのポート：Docker内のポート
     depends_on:
       - back
 
