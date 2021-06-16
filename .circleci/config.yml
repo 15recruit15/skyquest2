@@ -21,7 +21,8 @@ jobs:
       - run:
           name:             testing
           command: |      
-                            docker-compose up -d
+                            docker-compose up -d --build
+                            sleep 30
                             docker-compose run back rails db:create RAILS_ENV=test
                             docker-compose run back rails db:migrate RAILS_ENV=test
                             docker-compose run back bundle exec rspec spec
