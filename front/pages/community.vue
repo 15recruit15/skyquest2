@@ -65,8 +65,9 @@
             <div v-for="(p,i) in posts" :key="p.id" class="questions blur-content mb-3">
                 <b-card bg-variant="transparent">
                   <b-card-title class="mb-1">{{ i+1 }}. {{ p.title }}</b-card-title>
-                  <b-card-text class="mb-3" style="color: #CCCCCC; border-bottom: 1px solid #CCCCCC;">{{p.created_at.substr(0,10)}}に投稿</b-card-text>
+                  <b-card-text class="mb-3" style="color: #CCCCCC; border-bottom: 1px solid #CCCCCC;">投稿日: {{p.created_at.substr(0,10)}}</b-card-text>
                   <b-card-text class="pb-3" style="font-size: 1.3rem;">{{p.content}}</b-card-text>
+                 
                 </b-card>
             </div>
           </div>
