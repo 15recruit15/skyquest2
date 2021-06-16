@@ -70,7 +70,7 @@ workflows:
             cluster-name:                 ${CLUSTER_NAME}
             container-image-name-updates: 'container=${AWS_RESOURCE_NAME_PREFIX}-back,image-and-tag=${AWS_ECR_ACCOUNT_URL}/${REPO_NAME_BACK}:${CIRCLE_SHA1}'
             requires:
-              - aws-ecr/build-and-push-back
+              - build-and-push-back
             filters:
               branches:
                 only:
@@ -81,7 +81,7 @@ workflows:
             cluster-name:                 ${CLUSTER_NAME}
             container-image-name-updates: 'container=${AWS_RESOURCE_NAME_PREFIX}-front,image-and-tag=${AWS_ECR_ACCOUNT_URL}/${REPO_NAME_FRONT}:${CIRCLE_SHA1}'
             requires:
-              - aws-ecr/build-and-push-front
+              - build-and-push-front
             filters:
               branches:
                 only:
