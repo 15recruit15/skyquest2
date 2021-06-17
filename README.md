@@ -16,3 +16,10 @@ Skyquest1を元に再制作をしています。
   - ALB
   - ECS
   - RDS
+
+## 機能一覧
+- 記事投稿機能 (axios)
+- レスポンシブ機能 (Bootstrap-Vue)
+- 画像ファイルのアップロード機能 (Carrierwave + S3)
+- ログイン認証機能 (Devise + Devise_token_auth + auth module)
+- テスト機能 (Rspec)

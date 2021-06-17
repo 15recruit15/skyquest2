@@ -21,7 +21,7 @@ jobs:
       - run:
           name:             testing
           command: |      
-                            docker-compose up -d --build
+                            docker-compose up -d 
                             sleep 30
                             docker-compose run back rails db:create RAILS_ENV=test
                             docker-compose run back rails db:migrate RAILS_ENV=test
