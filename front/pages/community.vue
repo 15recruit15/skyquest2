@@ -39,13 +39,15 @@
                   ></b-form-textarea>
                 </b-form-group>
 
-                <b-form-file
-                  accept="image/jpeg, image/png, image/gif" 
-                  v-model="form.image"
-                  placeholder="画像選択 (任意)"
-                  size="sm"
-                  class="mb-5"
-                ></b-form-file>
+                <b-form-group>
+                  <b-form-file
+                    accept="image/jpeg, image/png, image/gif" 
+                    v-model="form.image"
+                    placeholder="画像選択 (任意)"
+                    size="sm"
+                    class="mb-5"
+                  ></b-form-file>
+                </b-form-group>
 
                 <b-button size="lg" pill type="submit" variant="primary" class="mr-3">　投稿　</b-button>
                 <b-button size="lg" pill type="reset" variant="outline-danger">リセット</b-button>
@@ -67,7 +69,7 @@
                   <b-card-title class="mb-1">{{ i+1 }}. {{ p.title }}</b-card-title>
                   <b-card-text class="mb-3" style="color: #CCCCCC; border-bottom: 1px solid #CCCCCC;">投稿日: {{p.created_at.substr(0,10)}}</b-card-text>
                   <b-card-text class="pb-3" style="font-size: 1.3rem;">{{p.content}}</b-card-text>
-                 
+                  <b-card-img v-bind:src="makeURL(p.image.url)"></b-card-img>   
                 </b-card>
             </div>
           </div>
@@ -93,12 +95,12 @@ export default {
       if (window.confirm("投稿しますか？")){
         try{
           const user = await this.$axios.$get('/users/show')
-          const res = await this.$axios.$post('/posts',{
-            user_id: user.id,
-            title: this.form.title,
-            content: this.form.content,
-            image: this.form.image
-          })
+          let formData = new FormData()
+          formData.append("post[title]", this.form.title)
+          formData.append("post[content]", this.form.content)
+          formData.append("post[image]", this.form.image)
+          formData.append("post[user_id]", user.id)
+          const res = await this.$axios.$post('/posts',formData)
           this.posts.unshift(res)
           alert('投稿しました')
           this.onReset()
@@ -111,6 +113,16 @@ export default {
       this.form.title = ''
       this.form.content = ''
       this.form.image = null
+    },
+    makeURL(url){
+      console.log(process.env.NODE_ENV);
+      if (process.env.NODE_ENV === "production"){
+         return url
+      }else{
+        let newURL = "http://localhost:3000" + url
+        return newURL
+      }
+      end
     }
   },
   computed: {
