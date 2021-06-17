@@ -2,7 +2,7 @@
 <template> 
     <div class = "container-fluid"> 
       <div class="offset-lg-3 col-lg-6 col-md-8 offset-md-2 arrange-form blur-content">
-        <h1 class = "form-title text-center">ログイン</h1>
+        <h3 class = "form-title text-center">ログイン</h3>
         <div class = "form-zone">
 
           <Notification :message="error" v-if="error" class="mb-4 pb-3" />

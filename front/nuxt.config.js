@@ -19,7 +19,7 @@ export default {
   ],
 
   plugins: [
-    '~/plugins/axios.js'
+    '~/plugins/axios.js',
   ],
 
   components: true,

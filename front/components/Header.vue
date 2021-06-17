@@ -16,7 +16,7 @@
             <template #button-content>
               <em>メニュー</em>
             </template>
-            <b-dropdown-item to="/">パスワード変更</b-dropdown-item>
+            <b-dropdown-item to="/edit">アカウント情報変更</b-dropdown-item>
             <b-dropdown-item @click="logout">ログアウト</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>

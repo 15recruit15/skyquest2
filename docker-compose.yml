@@ -19,7 +19,7 @@ services:
       - ./back:/app:cached 
     environment:
       RAILS_ENV: development
-      #RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     stdin_open: true
     tty: true
     depends_on:

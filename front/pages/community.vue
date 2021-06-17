@@ -69,6 +69,7 @@
                   <b-card-title class="mb-1">{{ i+1 }}. {{ p.title }}</b-card-title>
                   <b-card-text class="mb-3" style="color: #CCCCCC; border-bottom: 1px solid #CCCCCC;">投稿日: {{p.created_at.substr(0,10)}}</b-card-text>
                   <b-card-text class="pb-3" style="font-size: 1.3rem;">{{p.content}}</b-card-text>
+                  <b-card-text>{{p.user}}</b-card-text>
                   <b-card-img v-bind:src="makeURL(p.image.url)"></b-card-img>   
                 </b-card>
             </div>
@@ -94,12 +95,10 @@ export default {
     async onSubmit() {
       if (window.confirm("投稿しますか？")){
         try{
-          const user = await this.$axios.$get('/users/show')
           let formData = new FormData()
           formData.append("post[title]", this.form.title)
           formData.append("post[content]", this.form.content)
           formData.append("post[image]", this.form.image)
-          formData.append("post[user_id]", user.id)
           const res = await this.$axios.$post('/posts',formData)
           this.posts.unshift(res)
           alert('投稿しました')
