@@ -6,7 +6,7 @@ Skyquest1を元に再制作をしています。
 
 ## 使用技術
 - Rails 6.1.3
-- Nuxt.js 2.15.3
+- Nuxt 2.15.3
 - MariaDB 10.4
 - Docker
 - Circle CI
