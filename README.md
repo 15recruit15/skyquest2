@@ -24,3 +24,7 @@ Skyquest1を元に再制作をしています。
 - 画像ファイルのアップロード機能 (Carrierwave + S3)
 - ログイン認証機能 (Devise + Devise_token_auth + auth module)
 - テスト機能 (Rspec)
+
+##インフラ環境
+![SkyQuest-Portfolio](https://user-images.githubusercontent.com/82098752/122500064-04f1e700-d02d-11eb-98f6-0c924e57ddb4.png)
+
