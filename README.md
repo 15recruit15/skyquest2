@@ -19,10 +19,10 @@ Skyquest1を元に再制作をしています。
   - RDS
 
 ## 機能一覧
-- 記事投稿機能 (axios)
+- 記事投稿機能
 - レスポンシブ機能 (Bootstrap-Vue)
 - 画像ファイルのアップロード機能 (Carrierwave + S3)
-- ログイン認証機能 (Devise + Devise_token_auth + auth module)
+- ログイン認証機能 (Devise + Devise_token_auth)
 - テスト機能 (Rspec)
 
 ## インフラ環境

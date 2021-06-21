@@ -7,13 +7,13 @@ ENV HOME="/app" \
 ENV HOST 0.0.0.0
 
 WORKDIR ${HOME}
+ADD . .
 RUN apk update && \
     apk upgrade && \
     npm install -g n && \
     yarn install &&\
     rm -rf /var/cache/apk/*
 
-ADD . ${HOME}
 EXPOSE 3000
 RUN yarn run build
 CMD ["yarn", "start"]
