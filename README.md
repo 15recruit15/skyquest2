@@ -1,4 +1,4 @@
-# Sky Quest2 (制作中)
+# Sky Quest2 
 https://skyquest-japan-pilot.xyz
 
 Skyquest1を元に再制作をしています。
@@ -15,7 +15,7 @@ Skyquest1を元に再制作をしています。
   - ACM
   - ALB
   - ECR
-  - ECS (EC2)
+  - ECS
   - RDS
 
 ## 機能一覧
@@ -23,6 +23,7 @@ Skyquest1を元に再制作をしています。
 - レスポンシブ機能 (Bootstrap-Vue)
 - 画像ファイルのアップロード機能 (Carrierwave + S3)
 - ログイン認証機能 (Devise + Devise_token_auth)
+- 非ログインユーザーの機能制限 (auth module)
 - テスト機能 (Rspec)
 
 ## インフラ環境

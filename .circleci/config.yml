@@ -6,8 +6,8 @@ orbs:
 
 jobs:
   build:
-    machine:
-      image:                 circleci/classic:edge
+    docker:
+      - image: circleci/ruby:2.6.3
     steps:
       - checkout
       - run:
