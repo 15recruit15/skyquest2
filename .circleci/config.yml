@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name:              building
-          command:           docker-compose build 
+          command:           docker-compose -f docker-compose.yml -f docker-compose.pro.yml build 
   test:
     machine:
       image:                 circleci/classic:edge
@@ -21,7 +21,7 @@ jobs:
       - run:
           name:             testing
           command: |      
-                            docker-compose -f docker-compose.yml -f docker-compose.pro.yml up --build -d
+                            docker-compose -f docker-compose.yml up -d
                             sleep 30
                             docker-compose run back rails db:create RAILS_ENV=test
                             docker-compose run back rails db:migrate RAILS_ENV=test
