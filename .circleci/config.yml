@@ -6,17 +6,13 @@ orbs:
 
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.6.3
-      - image: circleci/node:lts
+    machine:
+      image:                 circleci/classic:edge
     steps:
       - checkout
       - run:
           name:              building
-          command: |
-                     docker-compose up -d
-                     sleep 10
-                     docker-compose down
+          command:           docker-compose build 
   test:
     machine:
       image:                 circleci/classic:edge
