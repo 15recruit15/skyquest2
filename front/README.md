@@ -1,4 +1,6 @@
-# sky-front
+# skyquest
+
+> My flawless Nuxt.js project
 
 ## Build Setup
 

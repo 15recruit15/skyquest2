@@ -19,7 +19,7 @@ export default {
   ],
 
   plugins: [
-    '~/plugins/axios.js',
+    { src: '~/plugins/axios.js', ssr: false }
   ],
 
   components: true,
@@ -38,27 +38,27 @@ export default {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth-next'
   ],
 
   build: {
   },
 
   server: {
+   
   },
 
-  env: {
-    apiURL: process.env.API_URL || 'http://localhost:3000'
+  publicRuntimeConfig: {
+    API_URL : process.env.API_URL,
   },
 
   axios: {
-    baseURL: process.env.apiURL,
+    //baseURL: "http://localhost:3000",
+    baseURL: "https://skyquest-japan-pilot-api.xyz",
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
-    // https: true,
-    //proxy: true
  },
 
 router: {

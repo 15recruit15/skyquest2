@@ -2,8 +2,8 @@ FROM node:12.5.0-alpine
 
 ENV HOME="/app" \
     LANG=C.UTF-8 \
-    TZ=Asia/Tokyo 
-    
+    TZ=Asia/Tokyo
+
 ENV HOST 0.0.0.0
 
 WORKDIR ${HOME}
@@ -12,3 +12,8 @@ RUN apk update && \
     npm install -g n && \
     yarn install &&\
     rm -rf /var/cache/apk/*
+
+ADD . ${HOME}
+EXPOSE 3000
+RUN yarn run build
+CMD ["yarn", "start"]

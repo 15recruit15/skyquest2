@@ -17,7 +17,7 @@ test:
 
 production:
   <<: *default
-  database: app_production
+  database: skyquest2_rds
   host: <%= Rails.application.credentials.rds[:host] %>
   username: <%= Rails.application.credentials.rds[:username] %>
   password: <%= Rails.application.credentials.rds[:password] %>

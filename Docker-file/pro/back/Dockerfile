@@ -6,10 +6,8 @@ ENV RUNTIME_PACKAGES="linux-headers libxml2-dev make gcc libc-dev nodejs tzdata 
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo
 
-RUN mkdir ${HOME}
 WORKDIR ${HOME}
 
-#COPYかADDをするときにホスト側はDockerfileを置いてあるディレクトリからの相対パス
 COPY Gemfile ${HOME}/Gemfile  
 COPY Gemfile.lock ${HOME}/Gemfile.lock
 
@@ -26,6 +24,6 @@ RUN apk update && \
     /usr/lib/mysqld* \
     /usr/bin/mysql*
 
-ADD . ${HOME}
-EXPOSE 3000
-CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
+#EXPOSE 8000
+#ADD . ${HOME}
+#CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "8000", "-e", "production"]

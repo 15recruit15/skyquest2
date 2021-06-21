@@ -5,15 +5,10 @@ ENV HOME="/app" \
     TZ=Asia/Tokyo
 
 ENV HOST 0.0.0.0
-WORKDIR ${HOME}
-COPY . .
 
+WORKDIR ${HOME}
 RUN apk update && \
     apk upgrade && \
     npm install -g n && \
     yarn install &&\
     rm -rf /var/cache/apk/*
-
-RUN yarn run build
-EXPOSE 3000
-CMD ["yarn", "start"]

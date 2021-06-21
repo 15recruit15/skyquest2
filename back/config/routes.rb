@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'tops#test'
   get 'users/show'
   resources :posts
   devise_for :users

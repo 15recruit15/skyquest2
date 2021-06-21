@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+  back:
+    environment:
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}

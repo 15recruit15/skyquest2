@@ -30,7 +30,7 @@
 <script>
 
 export default{
-  auth: true,
+  middleware: 'auth',
   data: function () {
     return {
         name: '',

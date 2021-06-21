@@ -14,31 +14,23 @@ services:
 
   back:
     build: ./back 
-    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0' " 
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8000 -b '0.0.0.0' " 
     volumes:
       - ./back:/app:cached 
-    environment:
-      
-      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     stdin_open: true
     tty: true
     depends_on:
       - db 
     ports:
-      - 3000:3000 
+      - 8000:8000 
 
   front:
     build: ./front
-    command: yarn run dev
     volumes:
-      - ./front:/app:cached
+      - ./front:/app:cached 
+    command: yarn run dev
     ports:
-      - 8080:3000
-    depends_on:
-      - back
+      - 3000:3000
 
 volumes:
-  public-data:
-  tmp-data:
-  log-data:
   db-data:
