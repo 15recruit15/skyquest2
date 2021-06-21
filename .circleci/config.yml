@@ -8,11 +8,15 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.3
+      - image: circleci/node:lts
     steps:
       - checkout
       - run:
           name:              building
-          command:           docker-compose build 
+          command: |
+                     docker-compose up -d
+                     sleep 10
+                     docker-compose down
   test:
     machine:
       image:                 circleci/classic:edge
